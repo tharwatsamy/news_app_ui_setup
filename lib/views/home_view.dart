@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app_ui_setup/widgets/category_card.dart';
+import 'package:news_app_ui_setup/widgets/news_tile.dart';
 
 import '../widgets/categories_list_view.dart';
 
@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
-      body: const CategoriesListView(),
+      body: const NewsTile(),
     );
   }
 }
