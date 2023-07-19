@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_ui_setup/widgets/category_card.dart';
+
+import '../widgets/categories_list_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -14,17 +17,17 @@ class HomeView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              'News ',
+              'News',
               style: TextStyle(color: Colors.black),
             ),
             Text(
-              ' Cloud',
+              'Cloud',
               style: TextStyle(color: Colors.orange),
             ),
           ],
         ),
       ),
-      body: const Column(),
+      body: const CategoriesListView(),
     );
   }
 }
