@@ -6,9 +6,9 @@ class NewsService {
 
   NewsService(this.dio);
 
-  getNews() async {
+  Future<List<ArticleModel>> getNews() async {
     var response = await dio.get(
-        'https://newsapi.org/v2/top-headlines?apiKey=3c88955c487e4d9db668f011dd85e737&country=eg&category=general');
+        'https://newsapi.org/v2/top-headlines?country=us&apiKey=3c88955c487e4d9db668f011dd85e737&category=general');
 
     Map<String, dynamic> jsonData = response.data;
 
@@ -25,6 +25,6 @@ class NewsService {
       articlesList.add(articleModel);
     }
 
-    print(articlesList);
+    return articlesList;
   }
 }
