@@ -17,8 +17,12 @@ class NewsListView extends StatefulWidget {
 class _NewsListViewState extends State<NewsListView> {
   List<ArticleModel> articles = [];
   @override
-  void initState() async {
+  void initState() {
     super.initState();
+    getGeneralNews();
+  }
+
+  Future<void> getGeneralNews() async {
     articles = await NewsService(Dio()).getNews();
   }
 
