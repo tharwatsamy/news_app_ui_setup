@@ -1,46 +1,30 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../models/article_model.dart';
 import '../services/news_service.dart';
 import 'news_list_view.dart';
 
-class NewsListViewBuilder extends StatefulWidget {
-  const NewsListViewBuilder({
-    super.key,
-  });
-
-  @override
-  State<NewsListViewBuilder> createState() => _NewsListViewBuilderState();
-}
-
-class _NewsListViewBuilderState extends State<NewsListViewBuilder> {
-  List<ArticleModel> articles = [];
-
-  bool isLoading = true;
-  @override
-  void initState() {
-    super.initState();
-    getGeneralNews();
-  }
-
-  Future<void> getGeneralNews() async {
-    articles = await NewsService(Dio()).getNews();
-    isLoading = false;
-    setState(() {});
-  }
+class NewsListViewBuilder extends StatelessWidget {
+  const NewsListViewBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return isLoading
-        ? const SliverToBoxAdapter(
-            child: Center(child: CircularProgressIndicator()))
-        : articles.isNotEmpty
-            ? NewsListView(
-                articles: articles,
-              )
-            : const SliverToBoxAdapter(
-                child: Text('oops there was an error, try later'),
-              );
+    return FutureBuilder(
+        future: NewsService(Dio()).getNews(),
+        builder: (context, snapshot) {
+          return NewsListView(
+            articles: snapshot.data ?? [],
+          );
+        });
+    // return isLoading
+    //     ? const SliverToBoxAdapter(
+    //         child: Center(child: CircularProgressIndicator()))
+    //     : articles.isNotEmpty
+    //         ? NewsListView(
+    //             articles: articles,
+    //           )
+    //         : const SliverToBoxAdapter(
+    //             child: Text('oops there was an error, try later'),
+    //           );
   }
 }
