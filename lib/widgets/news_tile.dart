@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app_ui_setup/models/article_model.dart';
 
+// cached network image
 class NewsTile extends StatelessWidget {
   const NewsTile({super.key, required this.articleModel});
 
@@ -37,7 +38,7 @@ class NewsTile extends StatelessWidget {
         Text(
           articleModel.subTitle ?? '',
           maxLines: 2,
-          style: TextStyle(color: Colors.grey, fontSize: 14),
+          style: const TextStyle(color: Colors.grey, fontSize: 14),
         )
       ],
     );
